@@ -1,0 +1,47 @@
+.container.mt-5
+  .row
+    .col-md-8
+      .card.shadow-sm
+        .card-header.bg-primary.text-white
+          h2.mb-0 = @player.name
+        .card-body
+          .row.mb-4
+            .col-md-6
+              p
+                strong Email:
+                br
+                = @player.email
+            .col-md-6
+              p
+                strong Member Since:
+                br
+                = @player.created_at.strftime("%B %d, %Y")
+
+          hr
+
+          .row.text-center
+            .col-md-3
+              .stat-box
+                h5.text-muted Wins
+                h2.text-success = @player.wins || 0
+            .col-md-3
+              .stat-box
+                h5.text-muted Losses
+                h2.text-danger = @player.losses || 0
+            .col-md-3
+              .stat-box
+                h5.text-muted Total Matches
+                h2.text-info = (@player.wins || 0) + (@player.losses || 0)
+            .col-md-3
+              .stat-box
+                h5.text-muted Win Rate
+                - total = (@player.wins || 0) + (@player.losses || 0)
+                - if total > 0
+                  h2.text-primary = number_to_percentage((@player.wins.to_f / total) * 100, precision: 1)
+                - else
+                  h2.text-muted N/A
+
+        .card-footer.bg-light
+          = link_to "Edit", edit_player_path(@player), class: "btn btn-warning  me-2"
+          = link_to "Back to Players", players_path, class: "btn btn-secondary  me-2"
+          = link_to "Delete", player_path(@player), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"

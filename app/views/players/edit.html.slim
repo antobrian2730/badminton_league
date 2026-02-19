@@ -1,0 +1,12 @@
+.container.mt-5
+  .row
+    .col-md-8
+      h1 Edit Player
+      hr
+      = render "form", player: @player
+
+  .row.mt-3
+    .col-md-8
+      = link_to "Show", @player, class: "btn btn-info"
+      |&nbsp;&nbsp;
+      = link_to "Back to Players", players_path, class: "btn btn-secondary"

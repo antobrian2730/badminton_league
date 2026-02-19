@@ -1,0 +1,32 @@
+= form_with(model: player, local: true) do |form|
+  - if player.errors.any?
+    .alert.alert-danger.alert-dismissible.fade.show role="alert"
+      h4.alert-heading
+        = pluralize(player.errors.count, "error")
+        | prohibited this player from being saved:
+      ul.mb-0
+        - player.errors.full_messages.each do |message|
+          li = message
+      button.btn-close aria-label="Close" data-bs-dismiss="alert" type="button"
+
+  .mb-3
+    = form.label :name, "Player Name", class: "form-label"
+    = form.text_field :name, class: "form-control form-control-lg", placeholder: "Enter player name", required: true
+
+  .mb-3
+    = form.label :email, "Email Address", class: "form-label"
+    = form.email_field :email, class: "form-control form-control-lg", placeholder: "Enter email address", required: true
+
+  .row
+    .col-md-6
+      .mb-3
+        = form.label :wins, "Wins", class: "form-label"
+        = form.number_field :wins, class: "form-control form-control-lg", value: player.wins || 0, min: 0
+
+    .col-md-6
+      .mb-3
+        = form.label :losses, "Losses", class: "form-label"
+        = form.number_field :losses, class: "form-control form-control-lg", value: player.losses || 0, min: 0
+
+  .d-grid
+    = form.submit "Save Player", class: "btn btn-primary btn-lg"
