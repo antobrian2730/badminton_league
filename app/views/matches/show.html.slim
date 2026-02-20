@@ -3,7 +3,7 @@
     .col-md-10
       .card.shadow-sm.border-0
         .card-header.bg-primary.text-white
-          h2.mb-0 🏆 Match Details
+          h2.mb-0 Match Details
         .card-body.p-0
           .row.g-0
             .col-md-4.p-4.border-end.text-center
@@ -27,20 +27,20 @@
           .row.p-4
             .col-md-6
               p
-                strong 🏆 Winner:
+                strong Winner:
                 br
                 = link_to @match.winner.name, player_path(@match.winner), class: "text-decoration-none text-success"
                 |  
                 span.badge.bg-success Wins +1
             .col-md-6
               p
-                strong 💔 Loser:
+                strong Loser:
                 br
                 = link_to @match.loser.name, player_path(@match.loser), class: "text-decoration-none text-danger"
                 |  
                 span.badge.bg-danger Losses +1
 
         .card-footer.bg-light
-          = link_to "✏️ Edit", edit_match_path(@match), class: "btn btn-warning"
-          = link_to "← Back to Matches", matches_path, class: "btn btn-secondary"
-          = link_to "🗑️ Delete", match_path(@match), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"
+          = link_to "Edit", edit_match_path(@match), class: "btn btn-warning me-2"
+          = link_to "<- Back to Matches", matches_path, class: "btn btn-secondary me-2"
+          = link_to " Delete", match_path(@match), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"

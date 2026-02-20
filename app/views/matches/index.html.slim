@@ -2,10 +2,10 @@
   .row.mb-4
     .col-md-8
       h1
-        | 🏆 Match Tracking
+        | Match Tracking
         small.text-muted  - Match History
     .col-md-4.text-end
-      = link_to "📝 Record New Match", new_match_path, class: "btn btn-primary btn-lg"
+      = link_to "Record New Match", new_match_path, class: "btn btn-primary btn-lg"
 
   .row
     .col-md-12
@@ -41,11 +41,11 @@
                   td.text-center
                     span.badge.bg-danger.badge-lg = loser.name
                   td.text-center
-                    = link_to "View", match_path(match), class: "btn btn-sm btn-info"
-                    = link_to "Edit", edit_match_path(match), class: "btn btn-sm btn-warning"
+                    = link_to "View", match_path(match), class: "btn btn-sm btn-info me-2"
+                    = link_to "Edit", edit_match_path(match), class: "btn btn-sm btn-warning me-2"
                     = link_to "Delete", match_path(match), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger"
       - else
         .alert.alert-info.text-center
-          h4 🎾 No Matches Recorded Yet
+          h4  No Matches Recorded Yet
           p Start recording matches to build your league history.
           = link_to "Record First Match", new_match_path, class: "btn btn-primary btn-lg mt-3"

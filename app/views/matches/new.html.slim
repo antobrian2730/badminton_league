@@ -1,33 +1,9 @@
 .container.mt-5
   .row
     .col-md-8
-      h1 📝 Record New Match
+      h1 Record New Match
       hr
       = render "form", match: @match
-    .col-md-4
-      .card.bg-light.shadow-sm
-        .card-header.bg-primary.text-white
-          h5.mb-0 📋 Instructions
-        .card-body
-          p
-            strong Steps to record a match:
-          ol
-            li Select Player 1 from the list
-            li Select Player 2 (must be different from Player 1)
-            li Select which player won the match
-            li Set the match date and time
-            li Click "Record Match"
-          
-          hr
-          
-          p.small.text-muted
-            strong ℹ️ Note:
-            | Player statistics (wins/losses) will be automatically updated when you record the match.
-          
-          p.small.text-muted
-            strong ⚠️ Important:
-            | Both players must exist in the system before recording a match.
-
   .row.mt-3
     .col-md-8
       = link_to "← Back to Matches", matches_path, class: "btn btn-secondary"

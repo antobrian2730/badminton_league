@@ -3,6 +3,7 @@ class Match < ApplicationRecord
   belongs_to :player2, class_name: 'Player'
   belongs_to :winner, class_name: 'Player'
   
+  # Add these validations BEFORE the presence validations
   validates :player1_id, :player2_id, :winner_id, :match_date, presence: true
   validate :players_must_be_different
   validate :winner_must_be_participant
