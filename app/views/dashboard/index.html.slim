@@ -1,7 +1,14 @@
 .d-flex.flex-column.justify-content-center.align-items-center style="height:80vh;"
   h1 Welcome to BADMINTON LEAGUE
   br
-  .text-center
-    = link_to "Matches", matches_path, class: "btn btn-success mx-2"
-    = link_to "Players", players_path, class: "btn btn-primary mx-2"
-    = link_to "Leaderboard", leaderboards_path, class: "btn btn-danger mx-2"
+  .text-center.mt-4
+    .row.justify-content-center
+      .col-md-4
+        = link_to matches_path, class: "text-decoration-none"
+          = image_tag "bat.jpg", alt: "Matches", style: "width: 300px; height: 300px;"
+      .col-md-4
+        = link_to players_path, class: "text-decoration-none"
+          = image_tag "player.jpg", alt: "Players", style: "width: 300px; height: 300px;"
+      .col-md-4
+        = link_to leaderboards_path, class: "text-decoration-none"
+          = image_tag "leader.png", alt: "Players", style: "width: 300px; height: 300px;"
