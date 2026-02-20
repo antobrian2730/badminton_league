@@ -8,6 +8,12 @@ class Player < ApplicationRecord
   def total_matches
     (wins || 0) + (losses || 0)
   end
+
+  def win_ratio
+    total = total_matches
+    return 0 if total.zero?
+    ((wins.to_f / total) * 100).round(2)
+  end
   
   def win_rate
     return 0 if total_matches.zero?

@@ -1,0 +1,58 @@
+.container.mt-5
+  .row.mb-4
+    .col-md-8
+      h1 
+        | Badminton League
+        small.text-muted  - Leaderboard
+  .row
+    .col-md-12
+      - if @players.any?
+        .table-responsive
+          table.table.table-striped.table-hover.table-bordered
+            thead.table-dark
+              tr
+                th.text-center Rank
+                th Name
+                th Email
+                th.text-center Wins
+                th.text-center Losses
+                th.text-center Total Matches
+                th.text-center Win Rate
+                th.text-center Actions
+            tbody
+              - @players.each_with_index do |player, index|
+                - total = (player.wins || 0) + (player.losses || 0)
+                - win_percentage = total > 0 ? ((player.wins.to_f / total) * 100).round(2) : 0
+                tr class="rank-#{index + 1 <= 3 ? index + 1 : 'other'}"
+                  td.text-center
+                    - if index == 0
+                      span.badge.bg-warning.text-dark 1st
+                    - elsif index == 1
+                      span.badge.bg-secondary  2nd
+                    - elsif index == 2
+                      span.badge.bg-danger  3rd
+                    - else
+                      strong = index + 1
+                  td
+                    = link_to player.name, player_path(player), class: "text-decoration-none text-dark"
+                  td = player.email
+                  td.text-center
+                    span.badge.bg-success = player.wins || 0
+                  td.text-center
+                    span.badge.bg-danger = player.losses || 0
+                  td.text-center
+                    span.badge.bg-info = total
+                  td.text-center
+                    - if total > 0
+                      .progress
+                        .progress-bar.bg-primary role="progressbar" style="width: #{win_percentage}%" aria-valuenow="#{win_percentage}" aria-valuemin="0" aria-valuemax="100"
+                          = "#{win_percentage}%"
+                    - else
+                      span.text-muted N/A
+                  td.text-center
+                    = link_to "View", player_path(player), class: "btn btn-sm btn-info  me-2"
+      - else
+        .alert.alert-info.text-center
+          h4 No Players Found
+          p Get started by creating your first player.
+          = link_to "Create First Player", new_player_path, class: "btn btn-primary mt-2"
