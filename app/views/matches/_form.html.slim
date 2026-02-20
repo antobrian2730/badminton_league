@@ -1,0 +1,33 @@
+= form_with(model: match, local: true) do |form|
+  - if match.errors.any?
+    .alert.alert-danger.alert-dismissible.fade.show role="alert"
+      h4.alert-heading
+        = pluralize(match.errors.count, "error")
+        | prohibited this match from being saved:
+      ul.mb-0
+        - match.errors.full_messages.each do |message|
+          li = message
+      button.btn-close aria-label="Close" data-bs-dismiss="alert" type="button"
+
+  .row
+    .col-md-6
+      .mb-3
+        = form.label :player1_id, "🎾 Player 1", class: "form-label"
+        = form.collection_select :player1_id, Player.order(:name), :id, :name, { prompt: "Select Player 1" }, class: "form-control form-control-lg", required: true
+
+    .col-md-6
+      .mb-3
+        = form.label :player2_id, "🎾 Player 2", class: "form-label"
+        = form.collection_select :player2_id, Player.order(:name), :id, :name, { prompt: "Select Player 2" }, class: "form-control form-control-lg", required: true
+
+  .mb-3
+    = form.label :winner_id, "🏆 Winner", class: "form-label"
+    = form.collection_select :winner_id, Player.order(:name), :id, :name, { prompt: "Select Winner" }, class: "form-control form-control-lg", required: true
+    .form-text The winner must be one of the selected players (Player 1 or Player 2).
+
+  .mb-3
+    = form.label :match_date, "📅 Match Date & Time", class: "form-label"
+    = form.datetime_local_field :match_date, class: "form-control form-control-lg", required: true
+
+  .d-grid.gap-2
+    = form.submit "🎯 Record Match", class: "btn btn-success btn-lg"

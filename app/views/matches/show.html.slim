@@ -1,0 +1,46 @@
+.container.mt-5
+  .row
+    .col-md-10
+      .card.shadow-sm.border-0
+        .card-header.bg-primary.text-white
+          h2.mb-0 🏆 Match Details
+        .card-body.p-0
+          .row.g-0
+            .col-md-4.p-4.border-end.text-center
+              h3 = link_to @match.player1.name, player_path(@match.player1), class: "text-decoration-none text-dark"
+              p.text-muted Player 1
+              - if @match.winner_id == @match.player1_id
+                span.badge.bg-success.fs-6 ✓ Winner
+            
+            .col-md-4.p-4.text-center.bg-light
+              h2.text-muted.mb-3 VS
+              p.text-muted = @match.formatted_date
+            
+            .col-md-4.p-4.text-center
+              h3 = link_to @match.player2.name, player_path(@match.player2), class: "text-decoration-none text-dark"
+              p.text-muted Player 2
+              - if @match.winner_id == @match.player2_id
+                span.badge.bg-success.fs-6 ✓ Winner
+
+          hr.my-0
+
+          .row.p-4
+            .col-md-6
+              p
+                strong 🏆 Winner:
+                br
+                = link_to @match.winner.name, player_path(@match.winner), class: "text-decoration-none text-success"
+                |  
+                span.badge.bg-success Wins +1
+            .col-md-6
+              p
+                strong 💔 Loser:
+                br
+                = link_to @match.loser.name, player_path(@match.loser), class: "text-decoration-none text-danger"
+                |  
+                span.badge.bg-danger Losses +1
+
+        .card-footer.bg-light
+          = link_to "✏️ Edit", edit_match_path(@match), class: "btn btn-warning"
+          = link_to "← Back to Matches", matches_path, class: "btn btn-secondary"
+          = link_to "🗑️ Delete", match_path(@match), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"

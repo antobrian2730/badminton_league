@@ -1,0 +1,11 @@
+.container.mt-5
+  .row
+    .col-md-8
+      h1  Edit Match
+      hr
+      = render "form", match: @match
+
+  .row.mt-3
+    .col-md-8
+      = link_to "Show", @match, class: "btn btn-info"
+      = link_to "← Back to Matches", matches_path, class: "btn btn-secondary"
